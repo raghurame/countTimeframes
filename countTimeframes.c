@@ -21,6 +21,7 @@ int main(int argc, char const *argv[])
 
 	char lineString[1000];
 
+	printf("\n");
 	while (fgets (lineString, 1000, input))
 	{
 		nLines++;
@@ -28,7 +29,7 @@ int main(int argc, char const *argv[])
 
 		if ((isAtomLine == 1) && (nAtoms == 0)) {
 			sscanf (lineString, "%d\n", &nAtoms);
-			printf("\nDetected a total of %d atom/dihedral entries...\n", nAtoms);
+			printf("Detected a total of %d atom/dihedral entries...\n", nAtoms);
 			isAtomLine = 0; }
 
 		if (strstr (lineString, "ITEM: TIMESTEP")) {
