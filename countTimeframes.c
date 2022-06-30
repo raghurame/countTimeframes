@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
 		snprintf (pipeString, 500, "xzcat %s", argv[1]);
 		input = popen (pipeString, "r"); }
 	else
-		input = fopen (pipeString, "r");
+		input = fopen (argv[1], "r");
 
 	char lineString[1000];
 
@@ -35,6 +35,7 @@ int main(int argc, char const *argv[])
 		if (strstr (lineString, "ITEM: TIMESTEP")) {
 			nTimeframes++;
 			printf("Counting timeframes... %d                \r", nTimeframes);
+			// printf("%d %d\n", nLinesPerTimeframe, nAtoms);
 			fflush (stdout);
 
 			if ((nLinesPerTimeframe == (nAtoms + 9)) && (nAtoms > 0) && (nLinesPerTimeframe > 10))
@@ -45,7 +46,7 @@ int main(int argc, char const *argv[])
 
 			nLinesPerTimeframe = 0; }
 
-		if (strstr (lineString, "ITEM: NUMBER OF ATOMS"))
+		if (strstr (lineString, "ITEM: NUMBER OF"))
 			isAtomLine = 1;
 	}
 
